@@ -1,104 +1,128 @@
 # Truck Driver Communication System
 
-A Telegram-based communication system for truck drivers that streamlines logistics updates between drivers, managers, and recipients.
+A Telegram-based communication system for truck drivers that streamlines logistics updates between drivers, managers, and recipients using AI-powered message processing.
 
-## Project Overview
+## Overview
 
-This system addresses the challenges truck drivers face when communicating while on the road. Traditional smartphone interfaces aren't practical for hands-free or quick communication, and we need to ensure all stakeholders (shipper, driver, and consignee) can efficiently exchange updates about the truck's journey.
+This system uses Telegram as the primary interface for all users (drivers, managers, shippers, recipients) and leverages AI to interpret messages, take actions, and generate responses based on context.
 
 ### Key Features
 
-- **Simple Driver Interface**: Telegram-based communication with button-driven interactions
-- **Real-time Status Updates**: Automated notifications at key delivery milestones
-- **Location Tracking**: Proximity detection and ETA calculations
-- **Multi-stakeholder Communication**: Connecting drivers, managers, and recipients
-- **Natural Language Processing**: AI-powered message classification and intent recognition
-
-## User Journeys
-
-### Driver Journey
-1. Receive delivery assignment via Telegram
-2. Confirm assignment with a simple button tap
-3. Update status at key milestones (pickup arrival, loading, departure)
-4. Report issues or delays during transit
-5. Confirm delivery completion
-
-### Manager Experience
-1. Create and assign deliveries
-2. Monitor real-time delivery status
-3. Receive alerts about exceptions
-4. View analytics and performance metrics
-
-### Recipient Experience
-1. Receive ETA notifications
-2. Get updates about delays
-3. Confirm successful delivery
+- **Telegram Bot Interface**: All users interact through Telegram, eliminating the need for special apps
+- **Langchain.js AI Agent**: Powers the intelligence behind the system, interpreting messages and taking actions
+- **Groq LLM Integration**: Provides fast, efficient language understanding capabilities
+- **MongoDB Database**: Stores delivery information, user contexts, and location data with geospatial capabilities
+- **Location-Based Triggers**: Detect arrival/departure automatically
+- **Context-Aware Conversations**: Maintain context across interactions
+- **Flexible Interactions**: Support for both structured commands and natural language
 
 ## Technology Stack
 
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB with Mongoose
-- **Bot Framework**: Telegram Bot API
-- **Containerization**: Docker
-- **Testing**: Jest
+- **Backend**: Node.js with TypeScript and Express
+- **Database**: MongoDB with Mongoose ODM
+- **Messaging**: Telegram Bot API
+- **AI**: Langchain.js with Groq LLM
+- **Containerization**: Docker and Docker Compose
 - **Logging**: Winston
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- MongoDB (local or Atlas)
+- Telegram Bot Token (from BotFather)
+- Groq API Key
+
+## Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/truck-driver-communication-system.git
+   cd truck-driver-communication-system
+   ```
+
+2. Run the installation script:
+   ```
+   ./install.sh
+   ```
+
+3. Update the `.env` file with your credentials:
+   ```
+   # Required
+   TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+   MONGODB_URI=mongodb://localhost:27017/truck-communication
+   # or for MongoDB Atlas
+   MONGODB_ATLAS_URI=mongodb+srv://username:password@cluster.mongodb.net/truck-communication
+   GROQ_API_KEY=your_groq_api_key
+   ```
+
+## Development
+
+Start the development server:
+```
+npm run dev
+```
+
+Build for production:
+```
+npm run build
+```
+
+Start in production mode:
+```
+npm start
+```
 
 ## Project Structure
 
 ```
-/
-├── src/                  # Source code
-│   ├── api/              # Express API routes
-│   ├── bot/              # Telegram bot handlers
-│   ├── models/           # MongoDB schema models
-│   ├── services/         # Business logic services
-│   └── utils/            # Helper utilities
-├── config/               # Configuration files
-├── tests/                # Unit and integration tests
-└── docker/               # Docker configuration
+truck-driver-communication-system/
+├── config/                 # Configuration files
+│   ├── index.ts            # Main configuration
+│   └── database.ts         # Database configuration
+├── src/                    # Source code
+│   ├── api/                # API endpoints
+│   │   ├── routes.ts       # API routes
+│   │   └── controllers/    # API controllers
+│   ├── bot/                # Telegram bot
+│   │   └── setup.ts        # Bot initialization
+│   ├── models/             # MongoDB schemas
+│   │   ├── Driver.ts       # Driver model
+│   │   ├── Delivery.ts     # Delivery model
+│   │   ├── StatusUpdate.ts # Status update model
+│   │   └── UserContext.ts  # User context model
+│   ├── services/           # Business logic
+│   │   └── aiService.ts    # AI service with Langchain and Groq
+│   ├── utils/              # Utilities
+│   │   └── logger.ts       # Logging utility
+│   └── index.ts            # Application entry point
+├── tests/                  # Tests
+├── docker/                 # Docker configuration
+├── .env.example            # Environment variables example
+├── .gitignore              # Git ignore file
+├── docker-compose.yml      # Docker Compose configuration
+├── Dockerfile              # Docker configuration
+├── package.json            # NPM package configuration
+└── tsconfig.json           # TypeScript configuration
 ```
 
-## Getting Started
+## User Journeys
 
-### Prerequisites
+### Driver Journey
 
-- Node.js v18+
-- MongoDB
-- Telegram Bot Token (from BotFather)
+1. Driver receives a delivery assignment via Telegram
+2. Driver updates status as they progress through the delivery
+3. Driver can share location for automatic status updates
+4. Driver can report issues or delays
+5. Driver receives confirmation when status updates are processed
 
-### Installation
+### Manager Journey
 
-1. Clone the repository
-   ```
-   git clone https://github.com/yourusername/truck-driver-communication-system.git
-   ```
-
-2. Install dependencies
-   ```
-   npm install
-   ```
-
-3. Copy the environment variables file and update with your values
-   ```
-   cp .env.example .env
-   ```
-
-4. Start the development server
-   ```
-   npm run dev
-   ```
-
-## Development Guidelines
-
-This project follows strict development guidelines defined in the `.cursor.json` file, including:
-
-- RESTful API design principles
-- MongoDB best practices
-- Telegram Bot implementation standards
-- Error handling and security protocols
-- Testing requirements
-- Code style and documentation standards
+1. Manager creates delivery assignments
+2. Manager receives automatic updates on delivery progress
+3. Manager can query the status of any delivery
+4. Manager is alerted to issues or delays
+5. Manager can communicate with drivers via the system
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+MIT 

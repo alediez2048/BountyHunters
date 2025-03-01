@@ -2,12 +2,13 @@
   "name": "truck-driver-communication-system",
   "version": "0.1.0",
   "description": "A Telegram-based communication system for truck drivers that streamlines logistics updates between drivers, managers, and recipients",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "tsc",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint . --ext .ts"
   },
   "keywords": [
     "telegram",
@@ -25,12 +26,27 @@
     "mongoose": "^7.0.3",
     "node-telegram-bot-api": "^0.61.0",
     "uuid": "^9.0.0",
-    "winston": "^3.8.2"
+    "winston": "^3.8.2",
+    "langchain": "^0.1.0",
+    "@langchain/groq": "^0.0.1",
+    "@langchain/community": "^0.0.15",
+    "@langchain/core": "^0.1.10"
   },
   "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.11",
+    "@types/node-telegram-bot-api": "^0.61.0",
+    "@types/uuid": "^9.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^8.36.0",
     "jest": "^29.5.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.4"
   },
   "engines": {
     "node": ">=18.0.0"

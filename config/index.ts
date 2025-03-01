@@ -20,6 +20,7 @@ interface Config {
   security: {
     jwtSecret: string;
     jwtExpiration: string;
+    apiKeys: string[];
   };
   logging: {
     level: string;
@@ -51,6 +52,7 @@ const config: Config = {
   security: {
     jwtSecret: process.env.JWT_SECRET || 'default_jwt_secret_key',
     jwtExpiration: process.env.JWT_EXPIRATION || '24h',
+    apiKeys: (process.env.API_KEYS || '').split(',').filter(key => key.trim() !== ''),
   },
   logging: {
     level: process.env.LOG_LEVEL || 'info',
@@ -71,6 +73,7 @@ const validateConfig = () => {
     { key: 'TELEGRAM_BOT_TOKEN', value: config.telegram.botToken },
     { key: 'MONGODB_URI or MONGODB_ATLAS_URI', value: config.db.mongodbUri || config.db.mongodbAtlasUri },
     { key: 'GROQ_API_KEY', value: config.ai.groqApiKey },
+    { key: 'API_KEYS', value: config.security.apiKeys.length > 0 ? 'valid' : '' },
   ];
 
   const missingVars = requiredEnvVars.filter(item => !item.value);

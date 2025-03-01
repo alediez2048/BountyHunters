@@ -15,6 +15,7 @@ This system uses Telegram as the primary interface for all users (drivers, manag
 - **Location-Based Triggers**: Detect arrival/departure automatically
 - **Context-Aware Conversations**: Maintain context across interactions
 - **Flexible Interactions**: Support for both structured commands and natural language
+- **Secure API Access**: API key authentication for all API endpoints
 
 ## Technology Stack
 
@@ -24,6 +25,7 @@ This system uses Telegram as the primary interface for all users (drivers, manag
 - **AI**: Langchain.js with Groq LLM
 - **Containerization**: Docker and Docker Compose
 - **Logging**: Winston
+- **Security**: API key authentication
 
 ## Prerequisites
 
@@ -53,6 +55,14 @@ This system uses Telegram as the primary interface for all users (drivers, manag
    # or for MongoDB Atlas
    MONGODB_ATLAS_URI=mongodb+srv://username:password@cluster.mongodb.net/truck-communication
    GROQ_API_KEY=your_groq_api_key
+   
+   # API Keys (comma-separated, no spaces)
+   API_KEYS=key1,key2,key3
+   ```
+
+4. Generate secure API keys:
+   ```
+   npx ts-node scripts/generateApiKey.ts
    ```
 
 ## Development
@@ -79,9 +89,15 @@ truck-driver-communication-system/
 ├── config/                 # Configuration files
 │   ├── index.ts            # Main configuration
 │   └── database.ts         # Database configuration
+├── docs/                   # Documentation
+│   └── API_KEY_USAGE.md    # API key usage documentation
+├── scripts/                # Utility scripts
+│   └── generateApiKey.ts   # API key generation script
 ├── src/                    # Source code
 │   ├── api/                # API endpoints
 │   │   ├── routes.ts       # API routes
+│   │   ├── middleware/     # API middleware
+│   │   │   └── apiKeyAuth.ts # API key authentication
 │   │   └── controllers/    # API controllers
 │   ├── bot/                # Telegram bot
 │   │   └── setup.ts        # Bot initialization
@@ -93,7 +109,8 @@ truck-driver-communication-system/
 │   ├── services/           # Business logic
 │   │   └── aiService.ts    # AI service with Langchain and Groq
 │   ├── utils/              # Utilities
-│   │   └── logger.ts       # Logging utility
+│   │   ├── logger.ts       # Logging utility
+│   │   └── apiKeyGenerator.ts # API key generation utility
 │   └── index.ts            # Application entry point
 ├── tests/                  # Tests
 ├── docker/                 # Docker configuration
@@ -104,6 +121,12 @@ truck-driver-communication-system/
 ├── package.json            # NPM package configuration
 └── tsconfig.json           # TypeScript configuration
 ```
+
+## API Authentication
+
+All API endpoints (except the Telegram webhook) require API key authentication. Include the API key in the `x-api-key` header when making requests.
+
+For detailed information on API key usage, see [API Key Usage Documentation](docs/API_KEY_USAGE.md).
 
 ## User Journeys
 

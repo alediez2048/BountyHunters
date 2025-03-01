@@ -1,0 +1,259 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "name": "Project Structure",
+      "description": "Maintain a clean and organized project structure",
+      "patterns": [
+        {
+          "pattern": "/src/api/*.js should follow RESTful principles",
+          "description": "API routes should follow RESTful conventions for consistent endpoints"
+        },
+        {
+          "pattern": "Controllers should be separated from routes",
+          "description": "Keep route definitions and controller logic separate for better maintainability"
+        },
+        {
+          "pattern": "Business logic should be in /src/services",
+          "description": "Keep business logic in service files separate from API controllers"
+        }
+      ]
+    },
+    {
+      "name": "MongoDB Best Practices",
+      "description": "Follow MongoDB and Mongoose best practices",
+      "patterns": [
+        {
+          "pattern": "Define schemas in /src/models",
+          "description": "Keep all Mongoose schemas in the models directory"
+        },
+        {
+          "pattern": "Use lean() for read operations",
+          "description": "Use lean() for read-only operations to improve performance"
+        },
+        {
+          "pattern": "Add indexes for frequently queried fields",
+          "description": "Define indexes on fields used in queries for better performance"
+        },
+        {
+          "pattern": "Implement proper error handling for MongoDB operations",
+          "description": "Wrap MongoDB operations in try/catch blocks"
+        }
+      ]
+    },
+    {
+      "name": "Telegram Bot Best Practices",
+      "description": "Follow best practices for Telegram bot development",
+      "patterns": [
+        {
+          "pattern": "Use webhook mode in production",
+          "description": "Use webhook mode for production deployments for better performance"
+        },
+        {
+          "pattern": "Implement rate limiting for bot commands",
+          "description": "Add rate limiting to prevent abuse of the bot API"
+        },
+        {
+          "pattern": "Organize command handlers in separate files",
+          "description": "Keep bot command handlers organized in separate modules"
+        },
+        {
+          "pattern": "Implement proper error handling for Telegram API calls",
+          "description": "Handle potential errors from Telegram API calls gracefully"
+        }
+      ]
+    },
+    {
+      "name": "Async/Promise Handling",
+      "description": "Ensure proper async/promise handling",
+      "patterns": [
+        {
+          "pattern": "Use async/await consistently",
+          "description": "Prefer async/await over promise chains for better readability"
+        },
+        {
+          "pattern": "Implement proper error handling for async operations",
+          "description": "Use try/catch blocks for async operations"
+        },
+        {
+          "pattern": "Avoid nested promises",
+          "description": "Avoid callback hell by using async/await or promise chaining"
+        }
+      ]
+    },
+    {
+      "name": "Error Handling",
+      "description": "Implement robust error handling throughout the application",
+      "patterns": [
+        {
+          "pattern": "Use centralized error handling middleware",
+          "description": "Implement a centralized error handling middleware for Express"
+        },
+        {
+          "pattern": "Log errors with appropriate context",
+          "description": "Include relevant context information when logging errors"
+        },
+        {
+          "pattern": "Return appropriate HTTP status codes",
+          "description": "Use proper HTTP status codes for different error scenarios"
+        }
+      ]
+    },
+    {
+      "name": "Security Best Practices",
+      "description": "Follow security best practices",
+      "patterns": [
+        {
+          "pattern": "Validate and sanitize all user inputs",
+          "description": "Implement input validation for all user-provided data"
+        },
+        {
+          "pattern": "Use environment variables for sensitive configuration",
+          "description": "Store sensitive configuration in environment variables"
+        },
+        {
+          "pattern": "Implement proper authentication for admin endpoints",
+          "description": "Secure admin endpoints with appropriate authentication"
+        },
+        {
+          "pattern": "Apply rate limiting for public endpoints",
+          "description": "Implement rate limiting to prevent abuse"
+        }
+      ]
+    },
+    {
+      "name": "Testing",
+      "description": "Implement comprehensive testing",
+      "patterns": [
+        {
+          "pattern": "Write unit tests for services",
+          "description": "Create unit tests for service-layer business logic"
+        },
+        {
+          "pattern": "Use mocks for external services",
+          "description": "Mock external services like Telegram API for testing"
+        },
+        {
+          "pattern": "Implement integration tests for API endpoints",
+          "description": "Test API endpoints with integration tests"
+        },
+        {
+          "pattern": "Test error handling paths",
+          "description": "Ensure tests cover error scenarios and edge cases"
+        }
+      ]
+    },
+    {
+      "name": "Logging",
+      "description": "Implement appropriate logging",
+      "patterns": [
+        {
+          "pattern": "Use structured logging",
+          "description": "Use structured logging format for better searchability"
+        },
+        {
+          "pattern": "Log appropriate level of details",
+          "description": "Use different log levels (debug, info, warn, error) appropriately"
+        },
+        {
+          "pattern": "Include request IDs in logs",
+          "description": "Add request IDs to log entries for request tracing"
+        }
+      ]
+    },
+    {
+      "name": "Performance",
+      "description": "Optimize for performance",
+      "patterns": [
+        {
+          "pattern": "Implement caching where appropriate",
+          "description": "Cache frequently accessed data to improve performance"
+        },
+        {
+          "pattern": "Use pagination for large result sets",
+          "description": "Implement pagination for endpoints returning large datasets"
+        },
+        {
+          "pattern": "Use efficient database queries",
+          "description": "Optimize database queries and use projections when possible"
+        }
+      ]
+    },
+    {
+      "name": "Docker Best Practices",
+      "description": "Follow Docker best practices",
+      "patterns": [
+        {
+          "pattern": "Use multi-stage builds",
+          "description": "Implement multi-stage builds for smaller production images"
+        },
+        {
+          "pattern": "Optimize layer caching",
+          "description": "Order Dockerfile commands to maximize layer caching"
+        },
+        {
+          "pattern": "Don't run as root",
+          "description": "Use non-root users in Docker containers for security"
+        },
+        {
+          "pattern": "Use .dockerignore",
+          "description": "Exclude unnecessary files from Docker context"
+        }
+      ]
+    },
+    {
+      "name": "AI Message Processing",
+      "description": "Best practices for AI message processing",
+      "patterns": [
+        {
+          "pattern": "Implement confidence scores for message classification",
+          "description": "Add confidence thresholds to message classification"
+        },
+        {
+          "pattern": "Handle edge cases and unknown inputs gracefully",
+          "description": "Implement fallback mechanisms for unrecognized messages"
+        },
+        {
+          "pattern": "Maintain conversation context",
+          "description": "Store and utilize conversation context for better response generation"
+        }
+      ]
+    },
+    {
+      "name": "Location Handling",
+      "description": "Best practices for location processing",
+      "patterns": [
+        {
+          "pattern": "Implement geofencing efficiently",
+          "description": "Use efficient algorithms for geofencing calculations"
+        },
+        {
+          "pattern": "Handle location inaccuracies",
+          "description": "Account for GPS inaccuracies in location processing"
+        },
+        {
+          "pattern": "Store location history efficiently",
+          "description": "Optimize storage of location history data"
+        }
+      ]
+    },
+    {
+      "name": "Code Style",
+      "description": "Maintain consistent code style",
+      "patterns": [
+        {
+          "pattern": "Use ESLint for code linting",
+          "description": "Configure and use ESLint to maintain code quality"
+        },
+        {
+          "pattern": "Apply consistent naming conventions",
+          "description": "Follow consistent naming conventions for variables, functions, and files"
+        },
+        {
+          "pattern": "Document code with JSDoc",
+          "description": "Add JSDoc comments to functions and classes"
+        }
+      ]
+    }
+  ]
+} 
